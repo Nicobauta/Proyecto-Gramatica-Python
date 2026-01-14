@@ -1,33 +1,170 @@
-# Proyecto-Gramatica-Python
+# Sistema de Análisis y Evaluación de Expresiones usando Gramáticas en Python
+
+Este proyecto implementa un **sistema de análisis sintáctico y evaluación de expresiones matemáticas** utilizando **gramáticas formales** y **ANTLR4** con generación de código en **Python**.
+
+El sistema define una **gramática personalizada**, genera automáticamente el **lexer y parser**, y permite procesar archivos de entrada para **validar, interpretar y evaluar expresiones**, con fines académicos en el estudio de **lenguajes formales y compiladores**.
+
+---
+
+## Características principales
+
+- Definición de una **gramática formal (.g4)**
+- Generación automática de:
+  - Lexer
+  - Parser
+  - Visitor
+  - Listener
+- Evaluación de expresiones matemáticas
+- Procesamiento de archivos de entrada (`.txt`, `.csv`)
+- Arquitectura basada en **ANTLR + Python**
+- Separación clara entre:
+  - Gramática
+  - Lógica de ejecución
+  - Datos de prueba
+
+---
+
+## Arquitectura del sistema
+
+Archivo de entrada  
+↓  
+Lexer (tokenización)  
+↓  
+Parser (análisis sintáctico)  
+↓  
+Árbol de sintaxis (AST)  
+↓  
+Visitor / Evaluador  
+↓  
+Resultado de la expresión  
+
+---
+
+## Tecnologías utilizadas
+
+- **Python 3**
+- **ANTLR4**
+- **Gramáticas formales (.g4)**
+- **CSV / TXT**
+- **ANTLR Runtime para Python**
+
+---
+
+## Estructura del proyecto
+
+```
+Proyecto-Gramatica-Python-main/
+├── calculadora.g4
+├── calculadoraLexer.py
+├── calculadoraParser.py
+├── calculadoraVisitor.py
+├── calculadoraListener.py
+├── calculadora.tokens
+├── calculadoraLexer.tokens
+├── calculadora.interp
+├── calculadoraLexer.interp
+│
+├── main.py
+│
+├── datos.csv
+├── prueba.csv
+├── ejemplo.txt
+├── quijote
+│
+├── requirements.txt
+├── sustentacion.txt
+└── README.md
+
+```
 
 
-Nicolas Bautista
 
-Ejecucion
+---
 
-El programa puede ser ejecutado tanto por consola como leyendo las instrucciones desde un archivo de texto
+## Descripción de los componentes principales
 
-Para ejecutarlo por consola es necesario ejecutar estos comandos:
+### `calculadora.g4`
+Archivo que define la **gramática formal** del lenguaje de expresiones matemáticas, incluyendo:
+- Reglas sintácticas
+- Tokens
+- Operadores
+- Prioridad de operaciones
 
-Para cargar la gramatica:
+---
 
-antlr4 -Dlanguage=Python3 -visitor calculadora.g4
+### Archivos generados por ANTLR
 
-Para ejecutar el programa:
+- `calculadoraLexer.py`: Tokeniza la entrada
+- `calculadoraParser.py`: Analiza la estructura sintáctica
+- `calculadoraVisitor.py`: Implementa la lógica de recorrido del árbol
+- `calculadoraListener.py`: Manejo de eventos del parser
 
-python3 main.py
+Estos archivos son generados automáticamente a partir de la gramática `.g4`.
 
+---
 
-Por otro lado para ejecutar desde un archivo de texto se utilizan estos comandos:
+### `main.py`
+Archivo principal del proyecto.
 
-Para cargar la gramatica:
+Funciones principales:
+- Lectura de archivos de entrada
+- Ejecución del lexer y parser
+- Evaluación de expresiones
+- Manejo de errores sintácticos
 
-antlr4 -Dlanguage=Python3 -visitor calculadora.g4
+---
 
-Para ejecutar el programa con el nombre del archivo desde el que se leeran las instrucciones:
+### Archivos de datos
 
-python3 main.py NOMBRE DEL ARCHIVO
+- `ejemplo.txt`: Ejemplos de expresiones a evaluar
+- `datos.csv` / `prueba.csv`: Datos de prueba estructurados
+- `quijote`: Archivo de texto usado como prueba adicional
+- `sustentacion.txt`: Documento de apoyo académico
 
-En este caso existen dos archivo el primero prueba las uncionalidades de la gramatica el cual es ejemplo.txt y el otro es el que tiene la solucion a la sustenacion el cual se llama sustentacion.txt
+---
 
-### Nota= Para ejecutar los programas es necesario tener instaladas en el entorno de desarrollo todos los elementos que se importaron en el archivo main
+## Funcionalidades del sistema
+
+### Análisis léxico
+
+- Identifica tokens válidos
+- Detecta errores léxicos
+
+---
+
+### Análisis sintáctico
+
+- Valida la estructura de las expresiones
+- Construye el árbol de sintaxis (AST)
+
+---
+
+### Evaluación de expresiones
+
+- Ejecuta operaciones matemáticas
+- Respeta precedencia de operadores
+- Retorna resultados correctos o errores
+
+---
+
+## Ejecución del proyecto
+
+```bash
+# 1. Acceder al directorio del proyecto
+cd Proyecto-Gramatica-Python-main
+
+# 2. (Opcional) Crear un entorno virtual
+python -m venv venv
+
+# 3. Activar el entorno virtual
+# Linux / macOS
+source venv/bin/activate
+
+# Windows
+venv\Scripts\activate
+
+# 4. Instalar dependencias
+pip install -r requirements.txt
+
+# 5. Ejecutar el programa principal
+python main.py
